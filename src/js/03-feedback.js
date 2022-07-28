@@ -3,13 +3,17 @@ import throttle from "lodash.throttle";
 const formEl = document.querySelector('.feedback-form');
 formEl.addEventListener('input', throttle(onFormData, 500));
 formEl.addEventListener('submit', onSubmitForm);
-let formData = {};
+// let formData = {};
 
 initForm();
 
 function onFormData(e) {
-  formData[e.target.name] = e.target.value;
-  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+  let existedData = localStorage.getItem('feedback-form-state');
+   if (existedData !== null) {
+    existedData = {};
+  }
+  existedData[e.target.name] = e.target.value;
+  localStorage.setItem('feedback-form-state', JSON.stringify(existedData));
 }
 
 function onSubmitForm(e) {
