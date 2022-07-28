@@ -3,7 +3,7 @@ import throttle from "lodash.throttle";
 const formEl = document.querySelector('.feedback-form');
 formEl.addEventListener('input', throttle(onFormData, 500));
 formEl.addEventListener('submit', onSubmitForm);
-const formData = {};
+let formData = {};
 
 initForm();
 
@@ -25,7 +25,7 @@ function initForm() {
     existedData = JSON.parse(existedData);
     Object.entries(existedData).forEach(([name,value]) => {
       formEl.elements[name].value = value;
-      formData[name] = value;
+      existedData[name] = value;
     })
   }
 }
