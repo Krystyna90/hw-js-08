@@ -8,12 +8,12 @@ formEl.addEventListener('submit', onSubmitForm);
 initForm();
 
 function onFormData(e) {
-  let existedData = localStorage.getItem('feedback-form-state');
-   if (existedData !== null) {
-    existedData = {};
+  let formData = localStorage.getItem('feedback-form-state');
+   if (!formData) {
+    formData = {};
   }
-  existedData[e.target.name] = e.target.value;
-  localStorage.setItem('feedback-form-state', JSON.stringify(existedData));
+  formData[e.target.name] = e.target.value;
+  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
 
 function onSubmitForm(e) {
